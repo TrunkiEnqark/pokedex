@@ -3,34 +3,44 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>PokéDex</title>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+    <title>Pokedex</title>
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    <div class="container">
-        <header>
-            <h1>PokéDex</h1>
-            <div class="controls">
-                <div class="search-filter">
-                    <input type="text" id="searchInput" placeholder="Search Pokémon">
-                    <select id="typeFilter">
-                        <option value="">All Types</option>
-                    </select>
-                </div>
-                <button id="darkModeToggle" aria-label="Toggle Dark Mode">
-                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-moon"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path></svg>
-                </button>
-            </div>
-        </header>
-        <main id="pokemonList" class="pokemon-list"></main>
-    </div>
+    <header>
+        <div class="logo">
+            <img src="../img/header.avif" alt="Pokedex">
+        </div>
+        <nav class="menu">
+            <a href="./html/PokeDictionary.html">Pokemon data</a>
+            <a href="./html/Event.html">Pokemon event</a>
+            <a href="./html/Support.html">Support service</a>
+            <a href="./html/Contact.html">Contact headquarters</a>
+            <span></span>
+        </nav>
+        <div class="inputBox">
+            <input type="text" id="searchInput" placeholder="Search Pokemon">
+            <button class="searchButton">🔍</button>
+        </div>
+        <select id="typeFilter">
+            <option value="">All Types</option>
+        </select>
+        <button id="darkModeToggle"></button>
+    </header>
+
+    <main>
+        <div id="pokemonList"></div>
+    </main>
 
     <div id="pokemonModal" class="modal">
         <div class="modal-content">
-            <button class="close" aria-label="Close modal">&times;</button>
+            <span class="close">&times;</span>
             <div id="pokemonDetails"></div>
         </div>
+    </div>
+
+    <div class="background">
+        <img src="../img/Background.jpg" alt="Galaxy">
     </div>
 
     <script src="script.js"></script>

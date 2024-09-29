@@ -137,8 +137,7 @@ async function showPokemonDetails(pokemon) {
         <h3>Evolution Chain:</h3>
         <div class="evolution-chain">
             ${evolutionHTML}
-        </div>
-    `;
+        </div>`;
     document.getElementById('pokemonDetails').innerHTML = detailsHTML;
     modal.style.display = 'block';
 }
@@ -187,6 +186,7 @@ function initDarkMode() {
     updateDarkModeIcon();
 }
 
+// Event Listeners
 searchInput.addEventListener('input', filterPokemon);
 typeFilter.addEventListener('change', filterPokemon);
 darkModeToggle.addEventListener('click', toggleDarkMode);
@@ -201,5 +201,6 @@ window.addEventListener('click', (event) => {
     }
 });
 
+// Initialize the Pokedex
 initDarkMode();
 initPokeDex();
