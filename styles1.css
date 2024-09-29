@@ -1,0 +1,118 @@
+*{
+    padding: 0;
+    margin: 0;
+}
+/*----------------------Header------------------------*/
+header{
+    
+    min-height: 150px;
+    background: #000;
+}
+/*----------------------END-------------------------*/
+
+
+/*--------------------Logo design----------------------*/
+.logo img{
+    width: 1140px;
+    height: auto;
+    background-color: #000;
+    z-index: -1;
+}
+
+.logo{
+    text-align: center;
+}
+/*-----------------------END-------------------------*/
+
+
+/*--------------------Navbar design---------------------*/
+.menu{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: -6px;
+}
+nav{
+    position: relative;
+    width: 1140px;
+    height: 50px;
+    background: #222;
+    border-radius: 8px;
+    display: flex;
+    justify-content: left;
+    align-items: center;
+    z-index: 3;
+}
+
+nav a{
+    position: relative;
+    display: inline-block;
+    font-size: 1em;
+    font-weight: 500;
+    color: #fff;
+    text-decoration: none;
+    padding: 0 50px;
+    z-index: 1;
+}
+
+nav span{
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 195px;
+    height: 100%;
+    background: linear-gradient(45deg, #4f1919, #ff333f);
+    border-radius: 8px;
+    transition: .5s;
+}
+
+nav a:nth-child(1):hover~span{
+    left: 0;
+}
+nav a:nth-child(2):hover~span{
+    left: 190px;
+    width: 195px;
+}
+nav a:nth-child(3):hover~span{
+    left: 395px;
+    width: 185px;
+}
+nav a:nth-child(4):hover~span{
+    left: 605px;
+    width: 200px;
+}
+
+/*---------------------END---------------------------*/
+
+
+/*---------------------Search---------------------------*/
+.inputBox{
+    width: 250px;
+    height: 30px;
+    background: white;
+    border-radius: 5px;
+    display: flex;
+    align-items: center;
+}
+
+.inputBox input{
+    border: none;
+    outline: none;
+    padding: 0 45px 0 10px;
+}
+
+.searchButton{
+    color: black;
+    padding: 0;
+}
+/*--------------------END-----------------------------*/
+
+
+/*------------------Background design-------------------*/
+.background img{
+    width: 1497px;
+    height: 1920px;
+    filter: brightness(50%);
+    margin-top: -30px;
+}
+/*------------------------END--------------------------*/
