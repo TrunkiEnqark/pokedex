@@ -12,6 +12,7 @@ header{
     width: 1140px;
     height: auto;
     background-color: #000;
+    z-index: -1;
 }
 
 .logo{
