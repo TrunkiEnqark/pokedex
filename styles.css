@@ -1,122 +1,118 @@
-body {
-    font-family: 'Roboto', sans-serif;
-    background-color: #f5f5f5;
-    color: #333;
-    transition: background-color 0.3s ease, color 0.3s ease;
+*{
+    padding: 0;
+    margin: 0;
 }
-
-h1, h2, h3, h4, h5, h6 {
-    font-family: 'Montserrat', sans-serif;
+/*----------------------Header------------------------*/
+header{
+    
+    min-height: 150px;
+    background: #000;
 }
+/*----------------------END-------------------------*/
 
-.navbar {
-    background-color: #f8f9fa;
-    transition: background-color 0.3s ease;
-}
 
-.navbar-brand {
-    font-family: 'Montserrat', sans-serif;
-    font-weight: 700;
-    color: #007bff;
-}
-
-.pokemon-card {
-    background-color: #fff;
-    border-radius: 10px;
-    border: 1px solid #ddd;
-    overflow: hidden;
-    transition: transform 0.2s ease, box-shadow 0.2s ease;
-}
-
-.pokemon-card:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
-}
-
-.pokemon-card img {
-    width: 100%;
+/*--------------------Logo design----------------------*/
+.logo img{
+    width: 1140px;
     height: auto;
-    transition: transform 0.3s ease;
+    background-color: #000;
+    z-index: -1;
 }
 
-.pokemon-card:hover img {
-    transform: scale(1.1);
+.logo{
+    text-align: center;
 }
+/*-----------------------END-------------------------*/
 
-.card-body {
-    padding: 1rem;
-}
 
-.card-title {
-    margin-bottom: 0.5rem;
-    font-weight: 700;
-}
-
-.card-text {
-    font-size: 0.9rem;
-    color: #666;
-}
-
-/* Dark mode styles */
-body.dark-mode {
-    background-color: #181818;
-    color: #e0e0e0;
-}
-
-.navbar.dark-mode {
-    background-color: #333;
-}
-
-.pokemon-card.dark-mode {
-    background-color: #2e2e2e;
-    border-color: #444;
-}
-
-.pokemon-card.dark-mode .card-title {
-    color: #fff;
-}
-
-.pokemon-card.dark-mode .card-text {
-    color: #bbb;
-}
-
-/* Modal styles */
-.modal-content {
-    border-radius: 15px;
-}
-
-.modal-header {
-    background-color: #007bff;
-    color: #fff;
-    border-top-left-radius: 15px;
-    border-top-right-radius: 15px;
-}
-
-.modal-body {
-    padding: 2rem;
-}
-
-/* Loader styles */
-#loader {
+/*--------------------Navbar design---------------------*/
+.menu{
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 100px;
+    margin: -6px;
+}
+nav{
+    position: relative;
+    width: 1140px;
+    height: 50px;
+    background: #222;
+    border-radius: 8px;
+    display: flex;
+    justify-content: left;
+    align-items: center;
+    z-index: 3;
 }
 
-/* Animations */
-@keyframes fadeIn {
-    from { opacity: 0; }
-    to { opacity: 1; }
+nav a{
+    position: relative;
+    display: inline-block;
+    font-size: 1em;
+    font-weight: 500;
+    color: #fff;
+    text-decoration: none;
+    padding: 0 50px;
+    z-index: 1;
 }
 
-.pokemon-card {
-    animation: fadeIn 0.5s ease;
+nav span{
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 195px;
+    height: 100%;
+    background: linear-gradient(45deg, #4f1919, #ff333f);
+    border-radius: 8px;
+    transition: .5s;
 }
 
-/* Responsive adjustments */
-@media (max-width: 576px) {
-    .pokemon-card {
-        margin-bottom: 1rem;
-    }
+nav a:nth-child(1):hover~span{
+    left: 0;
 }
+nav a:nth-child(2):hover~span{
+    left: 190px;
+    width: 195px;
+}
+nav a:nth-child(3):hover~span{
+    left: 395px;
+    width: 185px;
+}
+nav a:nth-child(4):hover~span{
+    left: 605px;
+    width: 200px;
+}
+
+/*---------------------END---------------------------*/
+
+
+/*---------------------Search---------------------------*/
+.inputBox{
+    width: 250px;
+    height: 30px;
+    background: white;
+    border-radius: 5px;
+    display: flex;
+    align-items: center;
+}
+
+.inputBox input{
+    border: none;
+    outline: none;
+    padding: 0 45px 0 10px;
+}
+
+.searchButton{
+    color: black;
+    padding: 0;
+}
+/*--------------------END-----------------------------*/
+
+
+/*------------------Background design-------------------*/
+.background img{
+    width: 1497px;
+    height: 1920px;
+    filter: brightness(50%);
+    margin-top: -30px;
+}
+/
