@@ -1,0 +1,14 @@
+{
+  "scripts": {
+    "start-dev": "node lib/server-development",
+    "start": "node lib/server-production",
+    "dev": "nodemon server.js"
+  },
+  "devDependencies": {
+    "nodemon": "^3.1.7"
+  },
+  "dependencies": {
+    "ejs": "^3.1.10",
+    "mysql2": "^3.11.3"
+  }
+}
