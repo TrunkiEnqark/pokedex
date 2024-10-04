@@ -1,10 +1,10 @@
 const express = require('express');
-const { getHomepage, getTAK } = require('../../controller/homeController.js');
-// router.Method('route',handler)
+const { getHomepage, getFeedback, getDataDisplay } = require('../../controller/homeController.js');
 
 const router = express.Router();
+
 router.get('/', getHomepage);
+router.get('/feedback', getFeedback);
+router.get('/display-data', getDataDisplay); // New route for displaying data
 
-router.get('/tak', getTAK);
-
-module.exports = router;// export router defaults 
+module.exports = router;

@@ -2,46 +2,38 @@
 * {
     padding: 0;
     margin: 0;
-     }
+}
+
 body {
     background-color: #A04747;
     margin: 0;
     height: 100vh;
-    /* Full viewport height */
     font-family: Arial, sans-serif;
     display: flex;
     justify-content: center;
-    /* Center horizontally */
     align-items: center;
-    /* Center vertically */
     overflow: hidden;
-    /* Ensure no overflow */
 }
 
 .container {
     display: flex;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
-    max-height: 100vh;
+    max-height: 90vh;
     width: 1920px;
     max-width: 100vw;
-
-    /* Ensure it fits within viewport height */
 }
 
 .wrap-contact {
     padding: 10px;
     background-color: white;
     box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
-    /* Subtle shadow for aesthetics */
     max-width: 1280px;
-    /* Fixed width for the form */
     width: 920px;
     overflow-y: auto;
-    /* Add vertical scroll if content overflows */
-    height: 720px;
-    max-height: 100vh;
-    /* Ensure the form doesn't overflow vertically */
+    height: 820px;
+    max-height: 90vh;
 }
 
 /* Ảnh nền dưới */
@@ -56,39 +48,33 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 30vh;
+    height: 25vh;
     min-height: 15vh;
-    /* Chiều cao hợp lý để phần tử không quá lớn */
-    max-width: 100vw;
-    /* Đảm bảo chiều rộng tối đa không vượt quá khung nhìn */
+    max-width: 100%;
     overflow: hidden;
-    /* Đảm bảo không có phần tử nào vượt ra ngoài nếu quá lớn */
 }
 
 /* Ảnh nền trên */
 .title-overlay {
     background-image: url("../assert/title-pokemon.png");
     background-size: contain;
-    /* Đảm bảo ảnh luôn nằm trong khung mà không bị cắt */
     background-repeat: no-repeat;
     background-position: center;
     width: 100%;
-    /* Đặt chiều rộng 100% của phần tử cha */
     height: 100%;
-    /* Chiều cao tương đương với phần tử cha */
     max-width: 90%;
-    /* Giới hạn chiều rộng tối đa của ảnh */
     max-height: 90%;
-    /* Giới hạn chiều cao tối đa của ảnh */
     min-width: 150px;
     min-height: 150px;
-    /* giới hạn chiều rộng, dài tối thiểu  */
     object-fit: contain;
-    /* Giữ tỷ lệ ảnh mà không biến dạng */
     position: relative;
     z-index: 2;
 }
 
+/* Form styling */
+#feedbackForm {
+    padding: 20px;
+}
 
 /* Email and Name Inline Styling */
 .form-inline {
@@ -100,7 +86,6 @@ body {
 .info-firstname,
 .info-lastname {
     width: 48%;
-    /* Adjust to keep both fields aligned side by side */
 }
 
 label {
@@ -109,41 +94,78 @@ label {
     font-weight: bold;
 }
 
-input[type="firstname"],
-input[type="lastname"], 
-input[type = "email"]
-{
-    width: 90%;
-    margin:2%;
+input[type="text"],
+input[type="email"],
+textarea {
+    width: 100%;
     padding: 15px;
-    border: 1px solid #000000;
+    border: 1px solid #B7E0FF;
     border-radius: 90px;
-    border-color: #B7E0FF;
+    box-sizing: border-box;
+}
+
+textarea {
+    border-radius: 20px;
 }
 
 /* Checkbox styling */
-.formcheck {
-    margin-top: 10px;
+.form-check {
+    margin-top: 25px;
     text-align: start;
-}
-.form-control{
-    border-color: #B7E0FF;
 }
 
 .form-check-input {
     margin-right: 10px;
 }
 
+.form-group {
+    margin: 20px 0;
+}
+
+/* Button design */
+.btn-primary {
+    margin-top: 2%;
+    padding: 10px 20px;
+    border-radius: 90px;
+    border: none;
+    background-color: #007bff;
+    color: white;
+    cursor: pointer;
+}
+
+.btn-primary:hover {
+    background-color: #0056b3;
+}
+
+/* Response message */
+#responseMessage {
+    margin-top: 20px;
+    font-weight: bold;
+    text-align: center;
+}
+
+/* View Submitted Feedback link */
+.container > a {
+    margin-top: 20px;
+    color: white;
+    text-decoration: none;
+}
+
+.container > a:hover {
+    text-decoration: underline;
+}
 
 /* Responsive adjustments */
 @media screen and (max-width: 768px) {
     .wrap-contact {
-        width: 90%;
+        width: 90vw;
         padding: 20px;
         box-sizing: border-box;
-        /* Ensure the box resizes properly */
         max-height: 85vh;
-        /* Adjust height for smaller screens */
+    }
+
+    .form-group {
+        margin: 10px 0;
     }
 
     .form-inline {
@@ -153,8 +175,12 @@ input[type = "email"]
     .info-firstname,
     .info-lastname {
         width: 100%;
-        /* Stack fields vertically on smaller screens */
         margin-bottom: 10px;
     }
 
+    .feedback-container {
+        height: 19vh;
+        min-height: 15vh;
+        max-width: 85vw;
+    }
 }
