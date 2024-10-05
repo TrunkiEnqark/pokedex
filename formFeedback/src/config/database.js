@@ -21,7 +21,21 @@ const executeQuery = async (query, params = []) => {
     return rows;
 };
 
-module.exports = {
+//test connection
+const testConnection = async () => {
+    try {
+        const connection = await pool.getConnection();
+        console.log('Database connection successful');
+        connection.release();
+        return true;
+    } catch (error) {
+        console.error('Database connection failed:', error);
+        return false;
+    }
+};
+
+module.exports = { 
     pool,
-    executeQuery
+    executeQuery,
+    testConnection
 };
