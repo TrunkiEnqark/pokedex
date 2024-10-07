@@ -1,6 +1,5 @@
 /*----------------------Header------------------------*/
 header{
-    
     min-height: 150px;
     background: #000;
 }
@@ -9,9 +8,10 @@ header{
 
 /*--------------------Logo design----------------------*/
 .logo img{
-    width: 1140px;
+    width: 75%;
     height: auto;
     background-color: #000;
+    z-index: -1;
 }
 
 .logo{
@@ -26,35 +26,40 @@ header{
     justify-content: center;
     align-items: center;
     margin: -6px;
+    
 }
 nav{
     position: relative;
-    width: 1140px;
+    width: 77%;
     height: 50px;
+    padding: 0;
     background: #222;
     border-radius: 8px;
-    display: flex;
+    display: grid;
+    grid-template-columns: 18% 18% 18% 22% 24%;
     justify-content: left;
     align-items: center;
     z-index: 3;
 }
 
 nav a{
+    text-align: center; /*Canh chữ ra giữa mỗi ô*/
     position: relative;
-    display: inline-block;
-    font-size: 1em;
+    /* display: inline-block; */
+    font-size: 20px;
     font-weight: 500;
     color: #fff;
     text-decoration: none;
-    padding: 0 50px;
+    padding: 0;
     z-index: 1;
+
 }
 
 nav span{
     position: absolute;
     top: 0;
     left: 0;
-    width: 195px;
+    width: 18%;
     height: 100%;
     background: linear-gradient(45deg, #4f1919, #ff333f);
     border-radius: 8px;
@@ -65,16 +70,16 @@ nav a:nth-child(1):hover~span{
     left: 0;
 }
 nav a:nth-child(2):hover~span{
-    left: 190px;
-    width: 195px;
+    left: 18%;
+    width: 18%;
 }
 nav a:nth-child(3):hover~span{
-    left: 395px;
-    width: 185px;
+    left: 36%;
+    width: 18%;
 }
 nav a:nth-child(4):hover~span{
-    left: 605px;
-    width: 200px;
+    left: 54%;
+    width: 18%;
 }
 
 /*---------------------END---------------------------*/
@@ -82,32 +87,116 @@ nav a:nth-child(4):hover~span{
 
 /*---------------------Search---------------------------*/
 .inputBox{
-    width: 250px;
+    width: 90%;
     height: 30px;
     background: white;
     border-radius: 5px;
+    padding: 0;
+    margin-left: 10px;
     display: flex;
     align-items: center;
 }
 
 .inputBox input{
+    width: 85%;
+    height: 20px;
     border: none;
     outline: none;
-    padding: 0 45px 0 10px;
+    margin: 5px 0;
+    padding: 0 4px 0 20px;
 }
 
-.searchButton{
-    color: black;
+ .searchButton{
+    color: rgb(7, 7, 7);
+    position: relative;
     padding: 0;
+    margin: 0;
 }
 /*--------------------END-----------------------------*/
 
 
 /*------------------Background design-------------------*/
 .background img{
-    width: 1497px;
-    height: 1920px;
+    width: 100%;
+    height: auto;
     filter: brightness(50%);
     margin-top: -30px;
 }
 /*------------------------END--------------------------*/
+
+
+
+@media (max-width: 1210px){
+    .logo{
+        display: inline;
+        padding: 0px;
+    }
+    .logo img{
+        width: 100%;
+    }
+    .menu{
+        display: inline;
+        width: 100%;
+    }
+
+    nav{
+        width: 100%;
+        border-radius: 0;
+    }
+    
+    nav a{
+        /* padding: 0 35px; */
+        font-size: 18px;
+    }
+}
+
+@media (max-width:745px){
+    nav{
+        grid-template-columns: 25% 23% 23% 29%;
+        grid-template-rows: 60% 40%;
+    }
+    nav a{
+        /* padding: 0 35px; */
+        font-size: 13px;
+        grid-row: 1;
+    }
+    nav span{
+        grid-row: 1;
+        width: 25%;
+        height: 55%;
+        border-radius: 3px;
+        
+    }
+    nav a:nth-child(1):hover~span{
+        left: 0;
+    }
+    nav a:nth-child(2):hover~span{
+        left: 25%;
+        width: 23%;
+    }
+    nav a:nth-child(3):hover~span{
+        left: 48%;
+        width: 23%;
+    }
+    nav a:nth-child(4):hover~span{
+        left: 71%;
+        width: 29%;
+    }
+
+    .inputBox{
+        width: 135%;
+        height: 80%;
+        border-radius: 1px;
+        grid-row-start: 2;
+        grid-column-start: 1;
+        grid-column-end: 4;
+    }
+    .inputBox input{
+        height: 70%;
+        margin-left: 5px;
+    }
+    .searchButton{
+        font-size: 5px;
+    }
+    
+}
