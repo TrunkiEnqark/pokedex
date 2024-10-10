@@ -10,7 +10,16 @@
      <link rel="stylesheet" href="./html/Contact.html">
      <link rel="stylesheet" href="./styles.css">
     <title>Document</title>
+    <title>Pokédex</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+     <link rel="stylesheet" href="./html/PokeDictionary.html">
+     <link rel="stylesheet" href="./html/Event.html">
+     <link rel="stylesheet" href="./html/Support.html">
+     <link rel="stylesheet" href="./html/Contact.html">
+     <link rel="stylesheet" href="./styles.css">
+    <title>Document</title>
 </head>
+
 
 <body>
      <!--Design navbar-->
@@ -36,7 +45,47 @@
                 </div>
                 
             </nav>
+    <header>
+        <nav class="navbar navbar-expand-lg navbar-light bg-light">
+            <div class="container">
+                <a class="navbar-brand" href="#">Pokédex</a>
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarNav">
+                    <ul class="navbar-nav ml-auto">
+                        <li class="nav-item">
+                            <button id="dark-mode-toggle" class="btn btn-outline-primary">Dark Mode</button>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <main class="container mt-5">
+        <section id="pokemon-list" class="row"></section>
+    </main>
+
+    <div id="pokemonModal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="pokemonModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-lg" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 id="pokemonModalLabel" class="modal-title">Pokémon Details</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                
+            </nav>
         </div>
+    </header>
+    <!-- END Design navbar END -->
+
+
+    <!-- Bachground -->
+    <div class="background">
+        <img src="../img/Background.jpg" alt="Galaxy">
     </header>
     <!-- END Design navbar END -->
 
@@ -60,4 +109,18 @@
     <!-- END  Design footer END -->
 </body>
 
+    <!-- END Background END -->
+
+
+    <!-- DESIGN PokeDictionary -->
+    <!-- ......................CODE  HERE................................... -->
+    <!-- END PokeDictionary END -->
+
+
+    <!-- Design footer -->
+    <footer>
+         
+    </footer>
+    <!-- END  Design footer END -->
+    </body>
 </html>
