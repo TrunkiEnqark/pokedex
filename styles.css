@@ -90,6 +90,9 @@ nav a:nth-child(3):hover~span{
     left: 36%;
     width: 18%;
 }
+nav a:nth-child(4):hover~span{
+    left: 54%;
+    width: 22%;
 
 .modal-body {
     max-height: 500px; /* chiều cao tối đa của modal body */
@@ -178,6 +181,16 @@ nav a:nth-child(3):hover~span{
 }
 
 .pokemon-image-container {
+/*--------------------END-----------------------------*/
+
+
+/*------------------Background design-------------------*/
+.background{
+    position: absolute;
+    z-index: -4;
+}
+
+.background img{
     width: 100%;
     height: 0;
     padding-bottom: 100%; 
