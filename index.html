@@ -3,11 +3,15 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Pokédex</title>
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&family=Roboto:wght@400;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
-    <link rel="stylesheet" href="styles.css">
+    <!-- Link html -->
+     <link rel="stylesheet" href="./html/PokeDictionary.html">
+     <link rel="stylesheet" href="./html/Event.html">
+     <link rel="stylesheet" href="./html/Support.html">
+     <link rel="stylesheet" href="./html/Contact.html">
+     <link rel="stylesheet" href="./styles.css">
+    <title>Document</title>
 </head>
+
 <body>
     <header>
         <nav class="navbar navbar-expand-lg navbar-light bg-light">
@@ -29,8 +33,6 @@
 
     <main class="container mt-5">
         <section id="pokemon-list" class="row"></section>
-        <div id="pokemonList"></div>
-        <div id="pagination"></div>
     </main>
 
     <div id="pokemonModal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="pokemonModalLabel" aria-hidden="true">
@@ -42,27 +44,29 @@
                         <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
-                <div class="modal-body">
-                    <div id="pokemon-image"></div>
-                    <h6>Type</h6>
-                    <p id="pokemon-type"></p>
-                    <h6>Abilities</h6>
-                    <p id="pokemon-abilities"></p>
-                    <h6>Stats</h6>
-                    <div id="pokemon-stats"></div>
-                    <h6>Evolutions</h6>
-                    <p id="pokemon-evolutions"></p>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                </div>
-            </div>
+                
+            </nav>
         </div>
-    </div>
+    </header>
+    <!-- END Design navbar END -->
 
-    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.3/dist/umd/popper.min.js"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-    <script src="script.js"></script>
-</body>
+
+    <!-- Bachground -->
+    <div class="background">
+        <img src="../img/Background.jpg" alt="Galaxy">
+    </div>
+    <!-- END Background END -->
+
+
+    <!-- DESIGN PokeDictionary -->
+    <!-- ......................CODE  HERE................................... -->
+    <!-- END PokeDictionary END -->
+
+
+    <!-- Design footer -->
+    <footer>
+         
+    </footer>
+    <!-- END  Design footer END -->
+    </body>
 </html>
