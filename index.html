@@ -3,113 +3,58 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <!-- Link html -->
-     <link rel="stylesheet" href="./html/PokeDictionary.html">
-     <link rel="stylesheet" href="./html/Event.html">
-     <link rel="stylesheet" href="./html/Support.html">
-     <link rel="stylesheet" href="./html/Contact.html">
-     <!-- Link cho Css -->
-     <link rel="stylesheet" href="./styles.css">
-     <!-- Link cho JavaScript -->
-     <script src="./index.js" defer></script>
-     <!-- Link of search button -->
-     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-
-    <title>Document</title>
+    <link rel="stylesheet" href="./index.html">
+    <link rel="stylesheet" href="./html/Event.html">
+    <link rel="stylesheet" href="./html/Contact.html">    
+    <link rel="stylesheet" href="./styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <title> POKEDEX </title>
 </head>
-
-
 <body>
-     <!--Design navbar-->
-     <header>
+    <header>
         <div class="logo">
-            <a href="http://127.0.0.1:5500/html/PokeDictionary.html">
+            <a href="./index.html">
                 <img src="../img/header.avif" alt="Pokedex">
             </a>
         </div>
         <div class="menu">
             <nav>
-                <a href="./html/PokeDictionary.html">Pokemon data</a>
+                <a href="./index.html">Pokemon data</a>
                 <a href="./html/Event.html">Pokemon event</a>
                 <a href="./html/Support.html">Support service</a>
-                <a href="./html/Contact.html">Contact headquarters</a>
+                <a href="./Contact.html">Contact headquarters</a>
                 <span></span>
                 <div class="inputBox">
                         <input type="search" placeholder="Find Pokemon" name="searchBox">
                     <a href="button" class="searchButton">
                         <i class="fa fa-search" style="font-size:24px"></i>
                     </a>
-                </div>
-            </nav>
-    <header>
-        <nav class="navbar navbar-expand-lg navbar-light bg-light">
-            <div class="container">
-                <a class="navbar-brand" href="#">Pokédex</a>
-                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-            </div>
-        </nav>
-    </header>
-
-    <main class="container mt-5">
-        <section id="pokemon-list" class="row"></section>
-    </main>
-
-    <div id="pokemonModal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="pokemonModalLabel" aria-hidden="true">
-        <div class="modal-dialog modal-lg" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 id="pokemonModalLabel" class="modal-title">Pokémon Details</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
+                      
                 </div>
                 
             </nav>
         </div>
     </header>
-    <!-- END Design navbar END -->
 
-
-    <!-- Bachground -->
     <div class="background">
-        <img src="../img/Background.jpg" alt="Galaxy">
-    </header>
-    <!-- END Design navbar END -->
-
-
-    <!-- Bachground -->
-    <div class="background">
-        <img src="../img/Background.jpg" alt="Galaxy">
+        <img src="./img/Background.jpg" alt="Galaxy">
     </div>
-    <!-- END Background END -->
 
+    <main class="container mt-5" role="main">
+        <div id="pokemon-list" class="row"></div>
+        <div id="pagination"></div>
+    </main>
 
-    <!-- DESIGN PokeDictionary -->
-    <!-- ......................CODE  HERE................................... -->
-    <!-- END PokeDictionary END -->
+    <div class="modal fade" id="pokemonModal" tabindex="-1" role="dialog" aria-labelledby="pokemonModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-lg" role="document">
+            <div class="modal-content"></div>
+        </div>
+    </div>
 
-
-    <!-- Design footer -->
-    <footer>
-         
-    </footer>
-    <!-- END  Design footer END -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.3/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script src="index.js"></script> 
+    <script src="script.js"></script>
 </body>
-
-    <!-- END Background END -->
-
-
-    <!-- DESIGN PokeDictionary -->
-    <!-- ......................CODE  HERE................................... -->
-    <!-- END PokeDictionary END -->
-
-
-    <!-- Design footer -->
-    <footer>
-         
-    </footer>
-    <!-- END  Design footer END -->
-    </body>
 </html>

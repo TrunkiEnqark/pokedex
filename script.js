@@ -2,6 +2,8 @@ document.addEventListener('DOMContentLoaded', () => {
     const body = document.body;
     const pokemonList = document.getElementById('pokemon-list');
     const paginationContainer = document.getElementById('pagination');
+    const searchInput = document.querySelector('.inputBox input');
+    const searchButton = document.querySelector('.searchButton');
 
     let allPokemon = [];
     let currentPage = 1;
@@ -248,6 +250,25 @@ document.addEventListener('DOMContentLoaded', () => {
             // Handle the error (e.g., show an error message to the user)
         }
     }
+
+    function searchPokemon() {
+        const searchTerm = searchInput.value.toLowerCase();
+        const filteredPokemon = allPokemon.filter(pokemon => 
+            pokemon.name.toLowerCase().includes(searchTerm) ||
+            pokemon.types.some(type => type.type.name.toLowerCase().includes(searchTerm))
+        );
+        currentPage = 1;
+        displayPokemon(filteredPokemon);
+        setupPagination(filteredPokemon.length);
+    }
+
+    // Event listeners
+    searchButton.addEventListener('click', searchPokemon);
+    searchInput.addEventListener('keypress', (e) => {
+        if (e.key === 'Enter') {
+            searchPokemon();
+        }
+    });
 
 
     // Initialize
