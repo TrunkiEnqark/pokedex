@@ -9,5 +9,65 @@ nav span{
         width: 23%;
     }
 }
-
 /*---------------------END---------------------------*/
+
+/*----------------------Slide------------------------*/
+.slider{
+    width: 70%;
+    height: 250px;
+    margin: 10px auto;
+    display: grid;
+    grid-template-columns: 70% 30%;
+    grid-template-rows: 80% 20%;
+}
+.container-Above-Left{    
+    background: black;
+    justify-content: center;
+    display: grid;
+    grid-row: 1;
+    grid-column: 1;
+}
+.container-Above-Left img{
+    height: 200px;
+    width: auto;
+}
+
+.container-Bottom-Left{
+    background-color: white;
+    height: 50px;
+    width: auto;
+}
+.container-Bottom-Left a{
+    font-size: x-large;
+    text-decoration: none;
+    width: 19%;
+    padding: 0;
+    margin: 0;
+    display: inline-block;
+    text-align: center;
+}
+
+.container-Right{
+    display: grid;
+    grid-column: 2;
+    grid-row-start: 1;
+    grid-row-end: 2;
+}
+.container-Right img{
+    height: 250px;
+    width: 100%;
+}
+
+/*---------------------------------------------------*/
+
+
+/*---------------------eventContents------------------*/
+
+.eventContents{
+    width: 80%;
+    height: auto;
+    display: grid;
+    grid-template-columns: 25% 25% 25% 25%;
+}
+
+/******************************************************/
