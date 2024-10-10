@@ -31,22 +31,29 @@ nav span{
     height: 200px;
     width: auto;
 }
+/**/
+li{
+    list-style-type: none ;
+}
 
 .container-Bottom-Left{
-    background-color: white;
-    height: 50px;
-    width: auto;
-}
-.container-Bottom-Left a{
-    font-size: x-large;
-    text-decoration: none;
-    width: 19%;
-    padding: 0;
-    margin: 0;
-    display: inline-block;
-    text-align: center;
+    display: flex;
 }
 
+.container-Bottom-Left li a{
+    background-color: white;
+    text-decoration: none;
+    font-size: large;
+    display: block;
+    padding: 8px 25px;
+}
+
+.container-Bottom-Left li:hover a{
+    background: #4f4e4e;
+    color: aliceblue;
+    transition: all 0.3s;
+}
+/**/
 .container-Right{
     display: grid;
     grid-column: 2;
