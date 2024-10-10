@@ -169,7 +169,6 @@ nav a:nth-child(3):hover~span{
     color: #4CAF50;
 }
 
-/* Pokemon Modal Styles */
 .pokemon-modal-header {
     border-bottom: 2px solid #e9ecef;
 }
@@ -177,7 +176,7 @@ nav a:nth-child(3):hover~span{
 .pokemon-image-container {
     width: 100%;
     height: 0;
-    padding-bottom: 100%; /* This creates a square container */
+    padding-bottom: 100%; 
     position: relative;
     overflow: hidden;
     background-color: #f1f1f1;
@@ -190,7 +189,7 @@ nav a:nth-child(3):hover~span{
     left: 0;
     width: 100%;
     height: 100%;
-    object-fit: contain; /* This will make the image fit within the container while maintaining its aspect ratio */
+    object-fit: contain; 
     padding: 20px;
 }
 
@@ -257,25 +256,6 @@ nav a:nth-child(3):hover~span{
     text-align: right;
     padding-right: 5px;
     font-weight: bold;
-}
-
-/* Dark mode styles */
-.dark-mode .pokemon-modal-header {
-    background-color: #343a40;
-    border-bottom-color: #454d55;
-}
-
-.dark-mode .pokemon-image-container {
-    background-color: #e9f3f9;          /* Đề phòng cho các trình duyệt khác */
-}
-
-.dark-mode .pokemon-info h6,
-.dark-mode .stat-name {
-    color: #f8f9fa;
-}
-
-.dark-mode .progress {
-    background-color: #454d55;
 }
 
 /* Responsive adjustments */

@@ -1,5 +1,4 @@
 document.addEventListener('DOMContentLoaded', () => {
-    const darkModeToggle = document.querySelector('.navbar-nav .nav-link');
     const body = document.body;
     const pokemonList = document.getElementById('pokemon-list');
     const paginationContainer = document.getElementById('pagination');
@@ -10,12 +9,6 @@ document.addEventListener('DOMContentLoaded', () => {
     let offset = 0;
     const limit = 300;
 
-    function toggleDarkMode() {
-        body.classList.toggle('dark-mode');
-        document.querySelectorAll('.card').forEach(card => {
-            card.classList.toggle('dark-mode');
-        });
-    }
 
     async function fetchPokemon() {
         try {
@@ -255,11 +248,7 @@ document.addEventListener('DOMContentLoaded', () => {
             // Handle the error (e.g., show an error message to the user)
         }
     }
-    
-    // Event Listeners
-    if (darkModeToggle) {
-        darkModeToggle.addEventListener('click', toggleDarkMode);
-    }
+
 
     // Initialize
     loadPokemon();
