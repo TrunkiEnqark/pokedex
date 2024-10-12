@@ -6,14 +6,14 @@ const webRoutes = require('./config/routes/web');
 const { pool, executeQuery, testConnection } = require('./config/database');
 
 const app = express();
-const port = process.env.PORT || 8080;
-const hostname = process.env.HOST_NAME;
+const port = process.env.PORT || 3001;
+const hostname = process.env.HOST_NAME || 'localhost';
 
 // Config template engine
 configViewEngine(app);
 
 // Config static files
-app.use(express.static(path.join(__dirname, 'public')));
+app.use(express.static(path.join(__dirname, 'src/public')));
 
 // Parse JSON bodies
 app.use(express.json());
@@ -22,12 +22,12 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
 // Route to handle form submission
-app.post('/feedback', async (req, res) => {
+app.post('/', async (req, res) => {
     console.log('Received feedback submission:', req.body);
-    const { firstname, lastname, email, Content } = req.body;
-    const sql = `INSERT INTO User (firstname, lastname, email, Content) VALUES (?, ?, ?, ?)`;
+    const {firstname,lastname,email,feedback} = req.body;
+    const sql = `INSERT INTO User (firstname,lastname,email,feedback) VALUES (?,?,?,?)`;
     try {
-        const result = await executeQuery(sql, [firstname, lastname, email, Content]);
+        const result = await executeQuery(sql, [firstname, lastname, email, feedback]);
         console.log('Query result:', result);
         res.status(200).json({ message: 'Data inserted successfully', id: result.insertId });
     } catch (err) {
@@ -50,6 +50,23 @@ app.use('/', webRoutes);
     console.error('Unable to start server due to database connection failure');
     process.exit(1);
   }
+})();
+const waitForMySql = async () => {
+  while (true) {
+    try {
+      await testConnection();
+      console.log('MySQL ready');
+      break;
+    } catch (error) {
+      console.log('Waiting MySQL start...');
+      await new Promise(resolve => setTimeout(resolve, 5000));
+    }
+  }
+};
+
+(async () => {
+  await waitForMySql();
+  // Phần còn lại của mã khởi động server
 })();
 (async () => {
   try {
