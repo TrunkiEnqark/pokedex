@@ -270,7 +270,5 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     });
 
-
-    // Initialize
     loadPokemon();
 });
