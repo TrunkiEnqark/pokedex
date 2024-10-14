@@ -1,7 +1,12 @@
 FROM node:14
+
 WORKDIR /app
-COPY formFeedback/package*.json ./
+
+COPY package*.json ./
 RUN npm install
-COPY /formFeedback .
+
+COPY . .
+
 EXPOSE 3001
-CMD ["node","run","dev"]
+
+CMD ["node", "src/server.js"]

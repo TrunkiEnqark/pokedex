@@ -1,7 +1,7 @@
 services:
   app:
     build:
-      context: ./formFeedback
+      context: .
       dockerfile: Dockerfile
     ports:
       - "3001:3001"  

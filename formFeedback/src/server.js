@@ -13,7 +13,8 @@ const hostname = process.env.HOST_NAME || 'localhost';
 configViewEngine(app);
 
 // Config static files
-app.use(express.static(path.join(__dirname, 'src/public')));
+app.use(express.static(path.join(__dirname, 'public')));
+app.use(express.static(path.join(__dirname, 'html')));
 
 // Parse JSON bodies
 app.use(express.json());
