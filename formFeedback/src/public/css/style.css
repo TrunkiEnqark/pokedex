@@ -184,3 +184,23 @@ textarea {
         max-width: 85vw;
     }
 }
+
+/* Responsive adjustments */
+@media screen and (max-width: 1024px) {
+    .wrap-contact {
+        width: 100vw;
+        padding: 10px;
+        box-sizing: border-box;
+        max-height: 85vh;
+        max-width: 85vw;
+    }
+
+    .form-group {
+        margin: 5px 0;
+    }
+    .feedback-container {
+        height: 19vh;
+        min-height: 15vh;
+        max-width: 85vw;
+    }
+}
