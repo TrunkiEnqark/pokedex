@@ -38,7 +38,7 @@ document.addEventListener('DOMContentLoaded', () => {
         card.className = 'col-sm-6 col-md-4 col-lg-3 mb-4';
         card.innerHTML = `
             <div class="card pokemon-card">
-                <img src="${pokemon.sprites.front_default}" alt="${pokemon.name}" class="card-img-top">
+                <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/dream-world/${pokemon.id}.svg" alt="${pokemon.name}" class="card-img-top">
                 <div class="card-body">
                     <h5 class="card-title">${pokemon.name}</h5>
                     <p class="card-text">Type: ${pokemon.types.map(typeInfo => typeInfo.type.name).join(', ')}</p>
@@ -48,6 +48,8 @@ document.addEventListener('DOMContentLoaded', () => {
         card.querySelector('.card').addEventListener('click', () => showPokemonDetails(pokemon));
         return card;
     }
+
+    // Hình ảnh cũ: <img src="${pokemon.sprites.front_default}" alt="${pokemon.name}" class="card-img-top">
 
     async function loadPokemon() {
         const newPokemon = await fetchPokemon();
@@ -201,7 +203,7 @@ document.addEventListener('DOMContentLoaded', () => {
                     <div class="row">
                         <div class="col-md-6">
                             <div class="pokemon-image-container">
-                                <img src="${pokemon.sprites.front_default}" alt="${pokemon.name}" class="pokemon-image">
+                                <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/dream-world/${pokemon.id}.svg" alt="${pokemon.name}" class="card-img-top">
                             </div>
                         </div>
                         <div class="col-md-6">
