@@ -1,7 +1,7 @@
 /*--------------------Navbar design---------------------*/
 nav span{
     left: 0;
-    width: 18%;
+    width: 22%;
 }
 @media (max-width:745px){
     nav span{
