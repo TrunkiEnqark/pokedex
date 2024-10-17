@@ -156,3 +156,16 @@ nav a:nth-child(3):hover~span{
     border-radius: 10px;
 }
 
+
+/*----------------Responsive start----------------*/
+@media (max-width: 1149px){
+    nav{
+        grid-template-columns: 20% 20% 25% 22% 15%;
+    }
+
+    nav span{
+        width: 20%;
+    }
+    
+}
+/*-----------------Responsive end-----------------*/

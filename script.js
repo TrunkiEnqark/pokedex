@@ -274,3 +274,25 @@ document.addEventListener('DOMContentLoaded', () => {
 
     loadPokemon();
 });
+
+function changeText() {
+    const Data = document.getElementById("PD");
+    const Event = document.getElementById("PE");
+    const Contact = document.getElementById("CH");
+    if (window.innerWidth <= 1120) {
+        Data.textContent = "Data"; 
+        Event.textContent = "Event"; 
+        Contact.textContent = "Contact"
+    } 
+    else {
+        Data.textContent = "Pokemon data";      
+        Event.textContent = "Pokemon event"; 
+        Contact.textContent = "Contact headquarters"; 
+    }
+  }
+  
+  // Gọi hàm khi kích thước trình duyệt thay đổi
+  window.addEventListener("resize", changeText);
+  
+  // Gọi hàm khi trang web load lần đầu
+  changeText();
