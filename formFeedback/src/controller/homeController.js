@@ -1,13 +1,10 @@
 require('dotenv').config();
 const { pool, executeQuery } = require('../config/database');
 
-const getHomepage = (req, res) => {
+const getFeedback= (req, res) => {
     res.render('index');
 }
 
-const getFeedback = (req, res) => {
-    res.render('index');
-}
 
 const getDataDisplay = async (req, res) => {
     try {
@@ -20,7 +17,6 @@ const getDataDisplay = async (req, res) => {
 }
 
 module.exports = {
-    getHomepage,
     getFeedback,
     getDataDisplay
 }

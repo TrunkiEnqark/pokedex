@@ -1,16 +1,16 @@
 require('dotenv').config();
 const mysql = require('mysql2/promise');
-//Creating a sql pool running help not overflow data.
+
 const pool = mysql.createPool({
-    host: process.env.DB_HOST,
-    port: process.env.DB_PORT,
-    user: process.env.DB_USER,
-    password: process.env.DB_PASSWORD,
-    database: process.env.DB_NAME,
+    host: process.env.DB_HOST || 'db',
+    port: process.env.DB_PORT || 3306,
+    user: process.env.DB_USER || 'root',
+    password: process.env.DB_PASSWORD || 'start',
+    database: process.env.DB_NAME || 'FeedBack',
     waitForConnections: true,
     connectionLimit: 10,
-    maxIdle: 10, //default  syntax
-    idleTimeout: 60000, //default  syntax
+    maxIdle: 10,
+    idleTimeout: 60000,
     queueLimit: 0,
     enableKeepAlive: true,
     keepAliveInitialDelay: 0,
@@ -21,15 +21,14 @@ const executeQuery = async (query, params = []) => {
     return rows;
 };
 
-//test connection
 const testConnection = async () => {
     try {
         const connection = await pool.getConnection();
-        console.log('Database connection successful');
+        console.log('Connect databases successfully');
         connection.release();
         return true;
     } catch (error) {
-        console.error('Database connection failed:', error);
+        console.error('Connect databases false', error);
         return false;
     }
 };
