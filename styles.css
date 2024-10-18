@@ -201,7 +201,7 @@ nav a:nth-child(3):hover~span{
 
 
 /*---------------------Search---------------------------*/
-.inputBox{
+.inputbox{
     width: 90%;
     height: 30px;
     background: rgb(249, 249, 249);
@@ -212,7 +212,7 @@ nav a:nth-child(3):hover~span{
     align-items: center;
 }
 
-.inputBox input{
+.inputbox input{
     width: 85%;
     height: 20px;
     border: none;
@@ -251,7 +251,7 @@ nav a:nth-child(3):hover~span{
     color: #ffffff;
 }
 
- .searchButton{
+ .searchbutton{
     color: rgb(0, 0, 0);
     background: none;
     border: none;
