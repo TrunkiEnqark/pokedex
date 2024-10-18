@@ -5,13 +5,10 @@
 }
 
 body {
-    background-color: #A04747;
+    background-color: #A04747 !important;
     margin: 0;
     height: 100vh;
     font-family: Arial, sans-serif;
-    display: flex;
-    justify-content: center;
-    align-items: center;
     overflow: hidden;
 }
 
@@ -34,7 +31,7 @@ nav span{
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    max-height: 90vh;
+    max-height: 80vh;
     width: 1920px;
     max-width: 100vw;
 }

@@ -6,7 +6,7 @@
 
 body {
     font-family: 'Roboto', sans-serif;
-    background-color: #ffffff;
+    background-color:#A04747 !important; 
     color: #333;
     transition: background-color 0.3s ease, color 0.3s ease;
 }
@@ -62,7 +62,7 @@ header {
 .pokemon-card {
     background-color: #f8f9fa;
     border: 1px solid #ddd;
-    border-radius: 8px;
+    /* border-radius: 10px; */
     padding: 20px;
     text-align: center;
     margin-bottom: 20px;
@@ -88,7 +88,7 @@ header {
 /* Style for types */
 .pokemon-type {
     background-color: #ddd;
-    border-radius: 8px;
+    border-radius: 90px;
     padding: 5px;
     margin-right: 5px;
     display: inline-block;
@@ -214,9 +214,9 @@ nav a:nth-child(3):hover~span {
 } */
 
 .modal-body {
-    max-height: 500px;
+    max-height: 450px;
     /* chiều cao tối đa của modal body */
-    overflow-y: auto;
+    overflow-y:auto ;
     /* cho phép kéo xuống */
     padding: 2rem;
 }

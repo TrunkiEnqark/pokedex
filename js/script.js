@@ -15,12 +15,19 @@ document.addEventListener('DOMContentLoaded', () => {
     let allPokemonTypes = [];
     let currentPage = 1;
     const pokemonPerPage = 20;
-    let offset = 0;
-    const limit = 80;
+    const limit = 40; // Fetch 40 Pokémon at a time (pagination)
 
-    // Khởi tạo ứng dụng
-    initialize();
+    // Check if cached data exists
+    const cachedPokemonData = localStorage.getItem('allPokemon');
+    if (cachedPokemonData) {
+        allPokemon = JSON.parse(cachedPokemonData);
+        allPokemonTypes = [...new Set(allPokemon.flatMap(pokemon => pokemon.types.map(type => type.type.name)))];
+        loadPokemon();
+    } else {
+        initialize(); // Fetch data if cache doesn't exist
+    }
 
+    // Initialize app
     async function initialize() {
         await fetchAllPokemonNamesAndTypes();
         loadPokemon();
@@ -29,9 +36,8 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Event Listeners
     function setupEventListeners() {
-
         searchButton.addEventListener('click', handleSearch);
-        searchInput.addEventListener('input', handleAutocomplete);
+        searchInput.addEventListener('input', debounce(handleAutocomplete, 300)); // Debounce input
         searchInput.addEventListener('keypress', (e) => {
             if (e.key === 'Enter') handleSearch();
         });
@@ -44,10 +50,10 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    // Fetch All Pokemon Data
-    async function fetchAllPokemonNamesAndTypes() {
+    // Fetch All Pokémon Data (in chunks)
+    async function fetchAllPokemonNamesAndTypes(offset = 0) {
         try {
-            const response = await fetch('https://pokeapi.co/api/v2/pokemon?limit=1000');
+            const response = await fetch(`https://pokeapi.co/api/v2/pokemon?limit=${limit}&offset=${offset}`);
             const data = await response.json();
 
             const pokemonPromises = data.results.map(pokemon =>
@@ -55,29 +61,30 @@ document.addEventListener('DOMContentLoaded', () => {
             );
             const pokemonDetails = await Promise.all(pokemonPromises);
 
-            allPokemonTypes = [...new Set(pokemonDetails.flatMap(pokemon =>
-                pokemon.types.map(type => type.type.name)
-            ))];
+            allPokemon = [...allPokemon, ...pokemonDetails]; // Append to existing Pokémon data
+            allPokemonTypes = [...new Set(allPokemon.flatMap(pokemon => pokemon.types.map(type => type.type.name)))];
 
-            allPokemon = pokemonDetails;
+            // Cache the fetched data
+            localStorage.setItem('allPokemon', JSON.stringify(allPokemon));
+
+            if (data.next) { // If there's more data, fetch the next chunk
+                fetchAllPokemonNamesAndTypes(offset + limit);
+            } else {
+                loadPokemon();
+            }
         } catch (error) {
             console.error('Error fetching Pokémon data:', error);
         }
     }
 
-    // Load Pokemon List
-    async function loadPokemon() {
-        try {
-            displayPokemon(allPokemon);
-            setupPagination(allPokemon.length);
-        } catch (error) {
-            console.error('Error loading Pokémon:', error);
-            pokemonList.innerHTML = '<p class="text-danger">Failed to load Pokémon data.</p>';
-        }
+    // Load Pokémon List
+    function loadPokemon() {
+        displayPokemon(allPokemon);
+        setupPagination(allPokemon.length);
     }
 
     // Search Handling
-    async function handleSearch() {
+    function handleSearch() {
         const searchTerm = searchInput.value.toLowerCase().trim();
 
         if (!searchTerm) {
@@ -89,14 +96,14 @@ document.addEventListener('DOMContentLoaded', () => {
         const isTypeSearch = allPokemonTypes.includes(searchTerm);
 
         if (isTypeSearch) {
-            // search by types
+            // Search by types
             const filteredPokemon = allPokemon.filter(pokemon =>
                 pokemon.types.some(type => type.type.name === searchTerm)
             );
             displayPokemon(filteredPokemon);
             setupPagination(filteredPokemon.length);
         } else {
-            // search by name
+            // Search by name
             const filteredPokemon = allPokemon.filter(pokemon =>
                 pokemon.name.includes(searchTerm)
             );
@@ -117,7 +124,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
         if (!inputValue) return;
 
-        // filter name and types comfortable
+        // Filter Pokémon by name and types
         const filteredPokemon = allPokemon
             .filter(pokemon => pokemon.name.startsWith(inputValue))
             .slice(0, 5);
@@ -125,7 +132,7 @@ document.addEventListener('DOMContentLoaded', () => {
         const filteredTypes = allPokemonTypes
             .filter(type => type.startsWith(inputValue));
 
-        // get hint
+        // Display autocomplete suggestions
         filteredPokemon.forEach(pokemon => {
             const div = document.createElement('div');
             div.innerHTML = `<strong>${pokemon.name.substr(0, inputValue.length)}</strong>${pokemon.name.substr(inputValue.length)}`;
@@ -149,7 +156,7 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    // Display Pokemon List
+    // Display Pokémon List
     function displayPokemon(pokemonArray) {
         const startIndex = (currentPage - 1) * pokemonPerPage;
         const endIndex = startIndex + pokemonPerPage;
@@ -167,22 +174,34 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    // Create Pokemon Card
+    // Create Pokémon Card
     function createPokemonCard(pokemon) {
         const card = document.createElement('div');
         card.className = 'col-sm-6 col-md-4 col-lg-3 mb-4';
+
+        // Fallback for missing data
+        const pokemonImage = pokemon.id ?
+            `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/dream-world/${pokemon.id}.svg` :
+            'https://via.placeholder.com/150';  // Placeholder image if no ID is found
+
+        // Create type badges with the corresponding CSS class for color
+        const typeBadges = pokemon.types.map(typeInfo => {
+            const typeName = typeInfo.type.name; // Get the type name (e.g., fire, water)
+            return `<span class="pokemon-type ${typeName}">${typeName}</span>`; // Apply the class corresponding to the type
+        }).join(' ');
+
+        // Build the HTML for the Pokémon card
         card.innerHTML = `
-            <div class="card pokemon-card">
-                <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/dream-world/${pokemon.id}.svg" 
-                     alt="${pokemon.name}" 
-                     class="card-img-top">
+            <div class="card pokemon-card" aria-label="Details of ${pokemon.name}">
+                <img src="${pokemonImage}" alt="${pokemon.name} image" class="card-img-top" loading="lazy">
                 <div class="card-body">
                     <h5 class="card-title">${pokemon.name}</h5>
-                    <p class="card-text">Type: ${pokemon.types.map(typeInfo => typeInfo.type.name).join(', ')}</p>
+                    <p class="card-text">Type: ${typeBadges}</p>
                 </div>
             </div>
         `;
 
+        // Event listener to show Pokémon details on click
         card.querySelector('.pokemon-card').addEventListener('click', () => {
             showPokemonDetails(pokemon);
         });
@@ -190,9 +209,14 @@ document.addEventListener('DOMContentLoaded', () => {
         return card;
     }
 
-    // Show Pokemon Details
+    // Show Pokémon Details
     async function showPokemonDetails(pokemon) {
         const typeClass = pokemon.types[0].type.name;
+        const typeBadges = pokemon.types.map(typeInfo => {
+            const typeName = typeInfo.type.name;
+            return `<span class="pokemon-type ${typeName}">${typeName}</span>`;
+        }).join(' ');
+
         try {
             const evolutionChain = await getEvolutionChain(pokemon);
 
@@ -206,12 +230,10 @@ document.addEventListener('DOMContentLoaded', () => {
                 <div class="modal-body">
                     <div class="row">
                         <div class="col-md-6">
-                            <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/dream-world/${pokemon.id}.svg" 
-                                 alt="${pokemon.name}" 
-                                 class="img-fluid">
+                            <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/dream-world/${pokemon.id}.svg" alt="${pokemon.name}" class="img-fluid">
                         </div>
                         <div class="col-md-6">
-                            <p><strong>Types:</strong> ${pokemon.types.map(t => t.type.name).join(', ')}</p>
+                            <p class="card-text" style="padding-top:20px"><strong>Types:</strong> ${typeBadges}</p>
                             <p><strong>Height:</strong> ${pokemon.height / 10}m</p>
                             <p><strong>Weight:</strong> ${pokemon.weight / 10}kg</p>
                             <p><strong>Abilities:</strong> ${pokemon.abilities.map(a => a.ability.name).join(', ')}</p>
@@ -223,11 +245,7 @@ document.addEventListener('DOMContentLoaded', () => {
                             <div class="stat-row">
                                 <span>${stat.stat.name}:</span>
                                 <div class="progress">
-                                    <div class="progress-bar" 
-                                         style="width: ${stat.base_stat}%" 
-                                         aria-valuenow="${stat.base_stat}" 
-                                         aria-valuemin="0" 
-                                         aria-valuemax="100">
+                                    <div class="progress-bar" style="width: ${stat.base_stat}%" aria-valuenow="${stat.base_stat}" aria-valuemin="0" aria-valuemax="100">
                                         ${stat.base_stat}
                                     </div>
                                 </div>
@@ -236,9 +254,7 @@ document.addEventListener('DOMContentLoaded', () => {
                     </div>
                     <div class="evolution-chain mt-4">
                         <h6>Evolution Chain:</h6>
-                        <div class="evolution-chain-container">
-                            ${evolutionChain}
-                        </div>
+                        <div class="evolution-chain-container">${evolutionChain}</div>
                     </div>
                 </div>
             `;
@@ -253,68 +269,24 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     }
 
-    // Check if elements exist to avoid null errors
-    if (hamburger && navbar) {
-        // Toggle Navbar for Mobile
-        hamburger.addEventListener("click", function () {
-            navbar.classList.toggle("open");
-        });
-    }
-
-    if (mobileSearch && searchBox) {
-        // Toggle Search Box Visibility for Mobile
-        mobileSearch.addEventListener("click", function () {
-            searchBox.classList.toggle("open");
-        });
-    }
-
-
     // Pagination Setup
     function setupPagination(totalItems) {
         const pageCount = Math.ceil(totalItems / pokemonPerPage);
         paginationContainer.innerHTML = '';
         if (pageCount <= 1) return;
 
-        // create button
-        function createPageButton(pageNum, text = pageNum) {
+        // Create pagination buttons
+        for (let i = 1; i <= pageCount; i++) {
             const button = document.createElement('button');
-            button.innerText = text;
+            button.innerText = i;
             button.classList.add('page-button');
-            if (pageNum === currentPage) button.classList.add('active');
-            if (text !== '...') {
-                button.addEventListener('click', () => {
-                    currentPage = pageNum;
-                    displayPokemon(allPokemon);
-                    setupPagination(totalItems);
-                });
-            }
-            return button;
-        }
-
-        //add first button
-        paginationContainer.appendChild(createPageButton(1));
-
-        let start = Math.max(2, currentPage - 2);
-        let end = Math.min(pageCount - 1, currentPage + 2);
-
-        //  add sign ... after the first button
-        if (start > 2) {
-            paginationContainer.appendChild(createPageButton(null, '...'));
-        }
-
-        // add middle button 
-        for (let i = start; i <= end; i++) {
-            paginationContainer.appendChild(createPageButton(i));
-        }
-
-        // add sign ... before the last button
-        if (end < pageCount - 1) {
-            paginationContainer.appendChild(createPageButton(null, '...'));
-        }
-
-        // add the last button
-        if (pageCount > 1) {
-            paginationContainer.appendChild(createPageButton(pageCount));
+            if (i === currentPage) button.classList.add('active');
+            button.addEventListener('click', () => {
+                currentPage = i;
+                displayPokemon(allPokemon);
+                setupPagination(totalItems);
+            });
+            paginationContainer.appendChild(button);
         }
     }
 
@@ -330,13 +302,11 @@ document.addEventListener('DOMContentLoaded', () => {
             let chain = [];
             let currentStage = evolutionData.chain;
 
-            // Traverse through the evolution chain
+            // Traverse the evolution chain
             while (currentStage) {
-                // Extract Pokémon name and ID from URL
                 const speciesUrl = currentStage.species.url;
                 const pokemonId = speciesUrl.split('/').filter(Boolean).pop();
 
-                // Add to the chain
                 chain.push({
                     name: currentStage.species.name,
                     id: pokemonId
@@ -345,20 +315,25 @@ document.addEventListener('DOMContentLoaded', () => {
                 currentStage = currentStage.evolves_to[0]; // Go to the next evolution stage
             }
 
-            // Map the evolution chain and return the HTML with images
             return chain.map((stage, index) => `
-            <div class="evolution-stage">
-                <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/dream-world/${stage.id}.svg" 
-                     alt="${stage.name}" 
-                     class="evolution-image">
-                   <span>${stage.name}</span> 
-                ${index < chain.length - 1 ? ' → ' : ''} <!-- Add arrow between evolutions -->
-            </div>
-        `).join('');
+                <div class="evolution-stage">
+                    <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/dream-world/${stage.id}.svg" alt="${stage.name}" class="evolution-image">
+                    <span>${stage.name}</span> 
+                    ${index < chain.length - 1 ? ' → ' : ''}
+                </div>
+            `).join('');
         } catch (error) {
             console.error('Error fetching evolution chain:', error);
             return 'Evolution data not available';
         }
     }
 
-})
+    // Debounce function to optimize search input
+    function debounce(func, delay) {
+        let debounceTimer;
+        return function (...args) {
+            clearTimeout(debounceTimer);
+            debounceTimer = setTimeout(() => func.apply(this, args), delay);
+        };
+    }
+});
