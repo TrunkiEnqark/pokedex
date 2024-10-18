@@ -20,9 +20,16 @@ nav span{
 
 @media (max-width:745px){
     nav span{
+        left: 36%;
+        width: 18%;
+    }
+}
+
+@media (max-width:745px){
+    /* nav span{
         left: 48%;
         width: 23%;
-    }
+    } */
 }
 /*----------------------Navbar end----------------------*/
 
