@@ -15,6 +15,20 @@ body {
     overflow: hidden;
 }
 
+/*--------------------Navbar start---------------------*/
+nav span{
+    left: 44%;
+    width: 22%;
+}
+
+@media (max-width:745px){
+    nav span{
+        left: 48%;
+        width: 23%;
+    }
+}
+/*----------------------Navbar end----------------------*/
+
 .container {
     display: flex;
     flex-direction: column;

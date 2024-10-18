@@ -10,15 +10,16 @@ body {
     color: #333;
     transition: background-color 0.3s ease, color 0.3s ease;
 }
-/*----------------------Header------------------------*/
+
+/*---------------------Header start--=----------------------*/
 header{
     min-height: 150px;
     background: #000;
 }
-/*----------------------END-------------------------*/
+/*----------------------Header end-------------------------*/
 
 
-/*--------------------Logo design----------------------*/
+/*------------------------Logo start-------------------------*/
 .logo img{
     width: 75%;
     height: auto;
@@ -203,7 +204,7 @@ nav a:nth-child(3):hover~span{
 .inputBox{
     width: 90%;
     height: 30px;
-    background: white;
+    background: rgb(249, 249, 249);
     border-radius: 5px;
     padding: 0;
     margin-left: 10px;
@@ -251,7 +252,9 @@ nav a:nth-child(3):hover~span{
 }
 
  .searchButton{
-    color: rgb(7, 7, 7);
+    color: rgb(0, 0, 0);
+    background: none;
+    border: none;
     position: relative;
     padding: 0;
     margin: 0;
