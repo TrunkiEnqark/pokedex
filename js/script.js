@@ -15,7 +15,7 @@ document.addEventListener('DOMContentLoaded', () => {
     let allPokemonTypes = [];
     let currentPage = 1;
     const pokemonPerPage = 20;
-    const limit = 40; // Fetch 40 Pokémon at a time (pagination)
+    const limit = 100; // Fetch 100 Pokémon at a time (pagination)
 
     // Check if cached data exists
     const cachedPokemonData = localStorage.getItem('allPokemon');
@@ -275,18 +275,46 @@ document.addEventListener('DOMContentLoaded', () => {
         paginationContainer.innerHTML = '';
         if (pageCount <= 1) return;
 
-        // Create pagination buttons
-        for (let i = 1; i <= pageCount; i++) {
+        // create button
+        function createPageButton(pageNum, text = pageNum) {
             const button = document.createElement('button');
-            button.innerText = i;
+            button.innerText = text;
             button.classList.add('page-button');
-            if (i === currentPage) button.classList.add('active');
-            button.addEventListener('click', () => {
-                currentPage = i;
-                displayPokemon(allPokemon);
-                setupPagination(totalItems);
-            });
-            paginationContainer.appendChild(button);
+            if (pageNum === currentPage) button.classList.add('active');
+            if (text !== '...') {
+                button.addEventListener('click', () => {
+                    currentPage = pageNum;
+                    displayPokemon(allPokemon);
+                    setupPagination(totalItems);
+                });
+            }
+            return button;
+        }
+
+        //add first button
+        paginationContainer.appendChild(createPageButton(1));
+
+        let start = Math.max(2, currentPage - 2);
+        let end = Math.min(pageCount - 1, currentPage + 2);
+
+        //  add sign ... after the first button
+        if (start > 2) {
+            paginationContainer.appendChild(createPageButton(null, '...'));
+        }
+
+        // add middle button 
+        for (let i = start; i <= end; i++) {
+            paginationContainer.appendChild(createPageButton(i));
+        }
+
+        // add sign ... before the last button
+        if (end < pageCount - 1) {
+            paginationContainer.appendChild(createPageButton(null, '...'));
+        }
+
+        // add the last button
+        if (pageCount > 1) {
+            paginationContainer.appendChild(createPageButton(pageCount));
         }
     }
 
