@@ -25,6 +25,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Event Listeners
     function setupEventListeners() {
+        
         searchButton.addEventListener('click', handleSearch);
         searchInput.addEventListener('input', handleAutocomplete);
         searchInput.addEventListener('keypress', (e) => {
