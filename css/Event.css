@@ -10,14 +10,15 @@ nav span{
 /*--------------------Responsive start-------------------*/
 @media (max-width: 1149px){
     nav span{
-        width: 20%;
+        left: 18%;
+        width: 18%;
     }    
 }
 
 @media (max-width:745px){
-    nav span{
+    /* nav span{
         left: 25%;
         width: 23%;
-    }
+    } */
 }
 /*---------------------Responsive end--------------------*/

@@ -3,11 +3,19 @@ nav span{
     left: 0;
     width: 22%;
 }
-@media (max-width:745px){
+
+@media (max-width:1149px){
     nav span{
         left: 0%;
-        width: 23%;
+        width: 18%;
     }
+}
+
+@media (max-width:745px){
+    /* nav span{
+        left: 0%;
+        width: 23%;
+    } */
 }
 /*---------------------END---------------------------*/
 
