@@ -5,6 +5,10 @@ document.addEventListener('DOMContentLoaded', () => {
     const pokemonList = document.getElementById('pokemon-list');
     const paginationContainer = document.getElementById('pagination');
     const autocompleteList = document.getElementById('autocomplete-list');
+    const hamburger = document.getElementById("hamburger");
+    const mobileSearch = document.getElementById("mobile-search");
+    const navbar = document.getElementById("navbar");
+    const searchBox = document.getElementById("search-box");
 
     // State variables
     let allPokemon = [];
@@ -25,7 +29,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Event Listeners
     function setupEventListeners() {
-        
+
         searchButton.addEventListener('click', handleSearch);
         searchInput.addEventListener('input', handleAutocomplete);
         searchInput.addEventListener('keypress', (e) => {
@@ -46,15 +50,15 @@ document.addEventListener('DOMContentLoaded', () => {
             const response = await fetch('https://pokeapi.co/api/v2/pokemon?limit=1000');
             const data = await response.json();
 
-            const pokemonPromises = data.results.map(pokemon => 
+            const pokemonPromises = data.results.map(pokemon =>
                 fetch(pokemon.url).then(res => res.json())
             );
             const pokemonDetails = await Promise.all(pokemonPromises);
 
-            allPokemonTypes = [...new Set(pokemonDetails.flatMap(pokemon => 
+            allPokemonTypes = [...new Set(pokemonDetails.flatMap(pokemon =>
                 pokemon.types.map(type => type.type.name)
             ))];
-            
+
             allPokemon = pokemonDetails;
         } catch (error) {
             console.error('Error fetching Pokémon data:', error);
@@ -75,7 +79,7 @@ document.addEventListener('DOMContentLoaded', () => {
     // Search Handling
     async function handleSearch() {
         const searchTerm = searchInput.value.toLowerCase().trim();
-        
+
         if (!searchTerm) {
             displayPokemon(allPokemon);
             setupPagination(allPokemon.length);
@@ -83,7 +87,7 @@ document.addEventListener('DOMContentLoaded', () => {
         }
 
         const isTypeSearch = allPokemonTypes.includes(searchTerm);
-        
+
         if (isTypeSearch) {
             // search by types
             const filteredPokemon = allPokemon.filter(pokemon =>
@@ -96,7 +100,7 @@ document.addEventListener('DOMContentLoaded', () => {
             const filteredPokemon = allPokemon.filter(pokemon =>
                 pokemon.name.includes(searchTerm)
             );
-            
+
             if (filteredPokemon.length === 1) {
                 showPokemonDetails(filteredPokemon[0]);
             } else {
@@ -117,7 +121,7 @@ document.addEventListener('DOMContentLoaded', () => {
         const filteredPokemon = allPokemon
             .filter(pokemon => pokemon.name.startsWith(inputValue))
             .slice(0, 5);
-        
+
         const filteredTypes = allPokemonTypes
             .filter(type => type.startsWith(inputValue));
 
@@ -152,7 +156,7 @@ document.addEventListener('DOMContentLoaded', () => {
         const paginatedPokemon = pokemonArray.slice(startIndex, endIndex);
 
         pokemonList.innerHTML = '';
-        
+
         if (paginatedPokemon.length === 0) {
             pokemonList.innerHTML = '<p class="text-warning">No Pokémon found.</p>';
             return;
@@ -178,11 +182,11 @@ document.addEventListener('DOMContentLoaded', () => {
                 </div>
             </div>
         `;
-        
+
         card.querySelector('.pokemon-card').addEventListener('click', () => {
             showPokemonDetails(pokemon);
         });
-        
+
         return card;
     }
 
@@ -191,7 +195,7 @@ document.addEventListener('DOMContentLoaded', () => {
         const typeClass = pokemon.types[0].type.name;
         try {
             const evolutionChain = await getEvolutionChain(pokemon);
-            
+
             const modalContent = `
                 <div class="modal-header pokemon-modal-header ${typeClass}">
                     <h5 class="modal-title">${pokemon.name}</h5>
@@ -214,7 +218,7 @@ document.addEventListener('DOMContentLoaded', () => {
                         </div>
                     </div>
                     <div class="pokemon-stats mt-4">
-                        <h6>Stats:</h6>
+                        <h6>Status:</h6>
                         ${pokemon.stats.map(stat => `
                             <div class="stat-row">
                                 <span>${stat.stat.name}:</span>
@@ -249,12 +253,28 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     }
 
+    // Check if elements exist to avoid null errors
+    if (hamburger && navbar) {
+        // Toggle Navbar for Mobile
+        hamburger.addEventListener("click", function () {
+            navbar.classList.toggle("open");
+        });
+    }
+
+    if (mobileSearch && searchBox) {
+        // Toggle Search Box Visibility for Mobile
+        mobileSearch.addEventListener("click", function () {
+            searchBox.classList.toggle("open");
+        });
+    }
+
+
     // Pagination Setup
     function setupPagination(totalItems) {
         const pageCount = Math.ceil(totalItems / pokemonPerPage);
         paginationContainer.innerHTML = '';
         if (pageCount <= 1) return;
-    
+
         // create button
         function createPageButton(pageNum, text = pageNum) {
             const button = document.createElement('button');
@@ -270,60 +290,75 @@ document.addEventListener('DOMContentLoaded', () => {
             }
             return button;
         }
-    
+
         //add first button
         paginationContainer.appendChild(createPageButton(1));
-    
+
         let start = Math.max(2, currentPage - 2);
         let end = Math.min(pageCount - 1, currentPage + 2);
-    
+
         //  add sign ... after the first button
         if (start > 2) {
             paginationContainer.appendChild(createPageButton(null, '...'));
         }
-    
+
         // add middle button 
-        for (let i = start; i <= end ; i++) {
+        for (let i = start; i <= end; i++) {
             paginationContainer.appendChild(createPageButton(i));
         }
-    
+
         // add sign ... before the last button
         if (end < pageCount - 1) {
             paginationContainer.appendChild(createPageButton(null, '...'));
         }
-    
+
         // add the last button
         if (pageCount > 1) {
             paginationContainer.appendChild(createPageButton(pageCount));
         }
     }
 
-    // Evolution Chain Helper
+    // Evolution Chain Helper 
     async function getEvolutionChain(pokemon) {
         try {
             const speciesResponse = await fetch(pokemon.species.url);
             const speciesData = await speciesResponse.json();
-            
+
             const evolutionResponse = await fetch(speciesData.evolution_chain.url);
             const evolutionData = await evolutionResponse.json();
-            
+
             let chain = [];
             let currentStage = evolutionData.chain;
-            
+
+            // Traverse through the evolution chain
             while (currentStage) {
-                chain.push(currentStage.species.name);
-                currentStage = currentStage.evolves_to[0];
+                // Extract Pokémon name and ID from URL
+                const speciesUrl = currentStage.species.url;
+                const pokemonId = speciesUrl.split('/').filter(Boolean).pop();
+
+                // Add to the chain
+                chain.push({
+                    name: currentStage.species.name,
+                    id: pokemonId
+                });
+
+                currentStage = currentStage.evolves_to[0]; // Go to the next evolution stage
             }
-            
-            return chain.map(name => `
-                <div class="evolution-stage">
-                    <span>${name}</span>
-                    ${chain.indexOf(name) < chain.length - 1 ? ' → ' : ''}
-                </div>
-            `).join('');
+
+            // Map the evolution chain and return the HTML with images
+            return chain.map((stage, index) => `
+            <div class="evolution-stage">
+                <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/dream-world/${stage.id}.svg" 
+                     alt="${stage.name}" 
+                     class="evolution-image">
+                   <span>${stage.name}</span> 
+                ${index < chain.length - 1 ? ' → ' : ''} <!-- Add arrow between evolutions -->
+            </div>
+        `).join('');
         } catch (error) {
             console.error('Error fetching evolution chain:', error);
             return 'Evolution data not available';
         }
     }
+
 })
