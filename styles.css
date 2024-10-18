@@ -13,7 +13,8 @@ body {
 
 /*---------------------Header start--=----------------------*/
 header {
-    min-height: 100%;
+    min-height: 21%;
+    max-height: 20%;
     background: #000;
 }
 

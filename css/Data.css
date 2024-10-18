@@ -20,6 +20,13 @@ nav span{
 /*---------------------END---------------------------*/
 
 /*--------------Card-Add-Design------------------*/
+button.close{
+    width: 25px;
+    height: 25px;
+    margin-top: 5px;
+    border-radius: 15px;
+}
+
 img.card-img-top {
     width: 100%;
     aspect-ratio: 1/1; /* Giữ tỉ lệ vuông */
