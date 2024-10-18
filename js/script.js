@@ -15,7 +15,7 @@ document.addEventListener('DOMContentLoaded', () => {
     let allPokemonTypes = [];
     let currentPage = 1;
     const pokemonPerPage = 20;
-    const limit = 100; // Fetch 100 Pokémon at a time (pagination)
+    var limit = 50; // Fetch 1000 Pokémon at a time (pagination)
 
     // Check if cached data exists
     const cachedPokemonData = localStorage.getItem('allPokemon');
@@ -49,7 +49,20 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         });
     }
+    // Check if elements exist to avoid null errors
+    if (hamburger && navbar) {
+        // Toggle Navbar visibility for Mobile
+        hamburger.addEventListener("click", function () {
+            navbar.classList.toggle("open"); // Toggle 'open' class to show/hide the navbar
+        });
+    }
 
+    if (mobileSearch && searchBox) {
+        // Toggle Search Box visibility for Mobile
+        mobileSearch.addEventListener("click", function () {
+            searchBox.classList.toggle("open"); // Toggle 'open' class to show/hide the search box
+        });
+    }
     // Fetch All Pokémon Data (in chunks)
     async function fetchAllPokemonNamesAndTypes(offset = 0) {
         try {
