@@ -13,24 +13,25 @@ body {
 }
 
 /*--------------------Navbar start---------------------*/
-nav span{
+nav span {
     left: 44%;
     width: 22%;
 }
 
-@media (max-width:745px){
-    nav span{
+@media (max-width:745px) {
+    nav span {
         left: 36%;
         width: 18%;
     }
 }
 
-@media (max-width:745px){
+@media (max-width:745px) {
     /* nav span{
         left: 48%;
         width: 23%;
     } */
 }
+
 /*----------------------Navbar end----------------------*/
 
 .container {
@@ -52,6 +53,10 @@ nav span{
     overflow-y: auto;
     height: 820px;
     max-height: 90vh;
+}
+
+#feedbackForm {
+    padding: 0;
 }
 
 /* Ảnh nền dưới */
@@ -89,11 +94,6 @@ nav span{
     z-index: 2;
 }
 
-/* Form styling */
-#feedbackForm {
-    padding: 20px;
-}
-
 /* Email and Name Inline Styling */
 .form-inline {
     display: flex;
@@ -103,7 +103,7 @@ nav span{
 
 .info-firstname,
 .info-lastname {
-    width: 48%;
+    width: 44%;
 }
 
 label {
@@ -127,14 +127,14 @@ textarea {
 }
 
 /* Checkbox styling */
-.form-check {
+/* .form-check {
     margin-top: 25px;
     text-align: start;
-}
-
+} */
+/* 
 .form-check-input {
     margin-right: 10px;
-}
+} */
 
 .form-group {
     margin: 20px 0;
@@ -163,13 +163,13 @@ textarea {
 }
 
 /* View Submitted Feedback link */
-.container > a {
+.container>a {
     margin-top: 20px;
     color: white;
     text-decoration: none;
 }
 
-.container > a:hover {
+.container>a:hover {
     text-decoration: underline;
 }
 
@@ -216,6 +216,7 @@ textarea {
     .form-group {
         margin: 5px 0;
     }
+
     .feedback-container {
         height: 19vh;
         min-height: 15vh;

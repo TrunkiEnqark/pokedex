@@ -18,7 +18,9 @@ document.addEventListener('DOMContentLoaded', () => {
 
         // Store data into localStorage
         let feedbackData = JSON.parse(localStorage.getItem('feedbackData')) || [];
-        feedbackData.push(formData);
+        //check save successfully
+        if (feedbackData.push(formData))  alert("Add successfully");
+        else alert("Cannot save feedback. Try again.");
         localStorage.setItem('feedbackData', JSON.stringify(feedbackData));
 
         //Remove form data after submit
