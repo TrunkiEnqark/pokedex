@@ -1,28 +1,27 @@
-* {
-    padding: 0;
-    margin: 0;
-    box-sizing: border-box;
-}
-
-body {
+/*------------------------Body start-------------------------*/
+body 
+{
     font-family: 'Roboto', sans-serif;
     background-color:#A04747 !important; 
     color: #333;
     transition: background-color 0.3s ease, color 0.3s ease;
 }
+/* Body end */
 
-/*---------------------Header start--=----------------------*/
-header {
+
+/*---------------------Header start-=----------------------*/
+header 
+{
     min-height: 21%;
     max-height: 20%;
     background: #000;
 }
-
-/*----------------------Header end-------------------------*/
+/* Header end */
 
 
 /*------------------------Logo start-------------------------*/
-.logo img {
+.logo img 
+{
     width: 75%;
     height: auto;
     background-color: #000;
@@ -30,125 +29,16 @@ header {
     z-index: -1;
 }
 
-.logo {
+.logo 
+{
     text-align: center;
 }
+/* Logo end */
 
-/*-----------------------END-------------------------*/
 
-/* Hamburger Menu for Mobile */
-.container_responsive {
-    display: none;
-}
-
-.hamburger {
-    cursor: pointer;
-    z-index: 1001;
-    color: white;
-}
-
-.mobile-search {
-    cursor: pointer;
-    z-index: 1001;
-    color: white;
-}
-
-/* Style for Pokemon info */
-#pokemon-info {
-    margin-top: 20px;
-    display: flex;
-    flex-wrap: wrap;
-}
-
-.pokemon-card {
-    background-color: #f8f9fa;
-    border: 1px solid #ddd;
-    /* border-radius: 10px; */
-    padding: 20px;
-    text-align: center;
-    margin-bottom: 20px;
-    width: 100%;
-    max-width: 300px;
-}
-
-.pokemon-card h2 {
-    color: #333;
-}
-
-.pokemon-card img {
-    width: 150px;
-    height: auto;
-    margin-bottom: 10px;
-}
-
-.pokemon-card p {
-    margin: 0;
-    padding: 5px 0;
-}
-
-/* Style for types */
-.pokemon-type {
-    background-color: #ddd;
-    border-radius: 90px;
-    padding: 5px;
-    margin-right: 5px;
-    display: inline-block;
-    font-size: 0.9em;
-}
-
-.pokemon-type.fire {
-    background-color: #ffad60;
-}
-
-.pokemon-type.water {
-    background-color: #60aaff;
-}
-
-.pokemon-type.grass {
-    background-color: #78c850;
-}
-
-.pokemon-type.electric {
-    background-color: #f7d02c;
-}
-
-.pokemon-type.ice {
-    background-color: #98d8d8;
-}
-
-/* Autocomplete suggestion styling */
-.autocomplete-items {
-    position: absolute;
-    border: 1px solid #d4d4d4;
-    border-bottom: none;
-    border-top: none;
-    z-index: 99;
-    top: 100%;
-    left: 0;
-    right: 0;
-    background-color: white;
-    max-height: 200px;
-    overflow-y: auto;
-}
-
-.autocomplete-items div {
-    padding: 10px;
-    cursor: pointer;
-    background-color: #fff;
-    border-bottom: 1px solid #d4d4d4;
-}
-
-.autocomplete-items div:hover {
-    background-color: #e9e9e9;
-}
-
-.autocomplete-active {
-    background-color: DodgerBlue !important;
-    color: #ffffff;
-}
-
-/*--------------------Navbar design---------------------*/
-.menu {
+/*----------------------------Navbar start-------------------------------*/
+.menu 
+{
     display: flex;
     justify-content: center;
     align-items: center;
@@ -156,7 +46,8 @@ header {
 
 }
 
-nav {
+nav 
+{
     position: relative;
     width: 77%;
     height: 50px;
@@ -169,12 +60,10 @@ nav {
     align-items: center;
     z-index: 3;
 }
-
-nav a {
-    text-align: center;
-    /*Canh chữ ra giữa mỗi ô*/
-    position: relative;
-    /* display: inline-block; */
+nav a 
+{
+    text-align: center;/*Canh chữ ra giữa mỗi ô*/    
+    position: relative;    
     font-size: 20px;
     font-weight: 500;
     color: #fff;
@@ -183,8 +72,8 @@ nav a {
     z-index: 1;
 
 }
-
-nav span {
+nav span 
+{
     position: absolute;
     top: 0;
     left: 0;
@@ -194,34 +83,44 @@ nav span {
     border-radius: 8px;
     transition: .5s;
 }
-
-nav a:nth-child(1):hover~span {
+nav a:nth-child(1):hover~span 
+{
     left: 0;
 }
-
-nav a:nth-child(2):hover~span {
+nav a:nth-child(2):hover~span 
+{
     left: 22%;
     width: 22%;
 }
-
-nav a:nth-child(3):hover~span {
+nav a:nth-child(3):hover~span 
+{
     left: 44%;
     width: 22%;
 }
-
-.modal-body {
-    max-height: 450px;
-    /* chiều cao tối đa của modal body */
-    overflow-y:auto ;
-    /* cho phép kéo xuống */
-    padding: 2rem;
+/*....Navbar for mobile start....*/
+.container_responsive {
+    display: flex;
+    justify-content: space-between;
+    padding: 5px 20px;
 }
+.mobile-search input {
+    width: 90%;
+    height: 25px;
+    border: none;
+    outline: none;
+    border-radius: 10px;
+    margin: 0 0 0 5px;
+    padding: 0 4px 0 20px;
+}
+.searchbutton{
+    margin-top: 1.5px;
+}
+/*Navbar for mobile end*/
 
-/*---------------------END---------------------------*/
-
-
-/*---------------------Search---------------------------*/
-.inputbox {
+/*................Search Box Chat................*/
+/*    For pc    */
+.inputbox 
+{
     width: 90%;
     height: 30px;
     background: rgb(249, 249, 249);
@@ -232,7 +131,8 @@ nav a:nth-child(3):hover~span {
     align-items: center;
 }
 
-.inputbox input {
+.inputbox input 
+{
     width: 85%;
     height: 20px;
     border: none;
@@ -241,38 +141,8 @@ nav a:nth-child(3):hover~span {
     padding: 0 4px 0 20px;
 }
 
-/* Autocomplete suggestion styling */
-.autocomplete-items {
-    position: absolute;
-    border: 1px solid #d4d4d4;
-    border-bottom: none;
-    border-top: none;
-    z-index: 99;
-    top: 100%;
-    left: 0;
-    right: 0;
-    background-color: white;
-    max-height: 200px;
-    overflow-y: auto;
-}
-
-.autocomplete-items div {
-    padding: 10px;
-    cursor: pointer;
-    background-color: #fff;
-    border-bottom: 1px solid #d4d4d4;
-}
-
-.autocomplete-items div:hover {
-    background-color: #e9e9e9;
-}
-
-.autocomplete-active {
-    background-color: DodgerBlue !important;
-    color: #ffffff;
-}
-
-.searchbutton {
+.searchbutton
+{
     color: rgb(0, 0, 0);
     background: none;
     border: none;
@@ -280,38 +150,48 @@ nav a:nth-child(3):hover~span {
     padding: 0;
     margin: 0;
 }
+/*  For pc end   */
 
-.background {
-    z-index: -1;
+/*  For mobile   */
+.mobile-search  /* Start when max-width = 768px */
+{ 
+    width: 92%;
+    background: white;
+    border-radius: 15px;
+    margin-right: 10px;
+}
+/*  For mobile end */
+/*.............Search Box Chat end................*/
+
+/*............Hamburger Menu for Mobile............*/
+.container_responsive 
+{
+    display: none;
 }
 
-/*---------------------------------------------------------*/
-
-
-/*------------------Background design-------------------*/
-.background {
-    position: absolute;
-    z-index: -4;
+.hamburger 
+{
+    cursor: pointer;
+    z-index: 1001;
+    color: white;
 }
 
-.background img {
-    width: 100%;
-    height: 0;
-    padding-bottom: 100%;
-    position: relative;
-    overflow: hidden;
-    background-color: #f1f1f1;
-    border-radius: 10px;
+.mobile-search 
+{
+    cursor: pointer;
+    z-index: 1001;
+    color: white;
 }
+/*..Hamburger end..*/
+/*----------------------------------------Navbar end design-------------------------------*/
 
 
-
-/*----------------Responsive start----------------*/
-@media (max-width: 1149px) {
+/*------------------------------------Responsive start-------------------------------------*/
+@media (max-width: 1149)
+{
     .logo img{
         width: 100%;
     }
-
     nav {
         width: 100%;
         grid-template-columns: 18% 18% 18% 26% 20%;
@@ -332,9 +212,9 @@ nav a:nth-child(3):hover~span {
     }
 }
 
-/*-----------------Responsive end-----------------*/
-/* Hide navbar on small screens */
-@media (max-width: 768px) {
+
+@media (max-width: 769px) {
+    /*....Logo & Navbar responsive start....*/
     .logo img{
         width: 90%;
         height: auto;
@@ -363,66 +243,72 @@ nav a:nth-child(3):hover~span {
     nav a {
         font-size: 24px;
     }
-
-    .container_responsive {
-        display: flex;
-        justify-content: space-between;
-        padding: 0 20px;
-    }
-
+    
     /* Initially hide the navbar and search box in mobile */
-    #navbar,
-    #search-box {
+    /* #navbar, */
+    #search-box 
+    {
         display: none;
     }
-
-    #navbar.open {
-        display: flex;
+    #navbar.open 
+    {
         /* Show the navbar when 'open' class is added */
+        display: flex;        
         flex-direction: column;
-        background-color: #222;
+        background-color: #595656c3;
+    }
+    #navbar.menu.open span
+    {
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(45deg, #4f1919, #ff333f);
+    border-radius: 8px;
+    transition: .5s;
     }
 
-    #search-box.open {
+    nav a:nth-child(1):hover~span 
+    {
+        left: 0;
+    }
+    nav a:nth-child(2):hover~span 
+    {
+        bottom: 100%;
+        width: 22%;
+    }
+    nav a:nth-child(3):hover~span 
+    {
+        left: 44%;
+        width: 22%;
+    }
+    .modal-body 
+    {
+        max-height: 450px;
+        /* chiều cao tối đa của modal body */
+        overflow-y:auto ;
+        /* cho phép kéo xuống */
+        padding: 2rem;
+    }
+    #search-box.open 
+    {
         display: flex;
         /* Show the search box when 'open' class is added */
     }
 
     /* Slide in animation for menu */
-    .menu.open {
+    .menu.open 
+    {
         left: 0;
     }
-
-    .inputbox {
+    .inputbox 
+    {
         width: 100%;
         margin: 20px 0;
     }
-
-    .inputbox input {
+    .inputbox input 
+    {
         width: 90%;
     }
-
-    #pokemon-list{
-        display: grid;
-        grid-template-columns: 50% 50%;
-    }
-    
-    .container{
-        display: grid;
-        grid-template-rows: 90% 10%;
-    }
-    #pokemon-list{
-        grid-row: 1;
-        z-index: 1;
-        overflow: auto;
-    }
-    #pagination{
-        display: grid;
-        grid-row: 2;
-        z-index: 1;
-    }
-
-    .page-button{
-        height: 30px;
-    }
+    /* Logo & Navbar responsive end */ 
 }
+/* Responsive end */
+
